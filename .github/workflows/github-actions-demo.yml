@@ -18,10 +18,20 @@ jobs:
       - name: build site
         run: yarn build
       - run: ls -lah
+      - name: upload dist
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: ./dist
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - run: ls -lah
+      - name: download dist
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
       - run: ls -lah
       - name: rsync
         uses: Burnett01/rsync-deployments@5.2.1
