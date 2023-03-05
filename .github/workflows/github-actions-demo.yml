@@ -39,7 +39,7 @@ jobs:
       - name: rsync
         uses: Burnett01/rsync-deployments@5.2.1
         with:
-          switches: -avzr --dry-run
+          switches: -avvvzr --dry-run
           path: ./dist/
           remote_path: ${{ secrets.DEPLOY_PATH }}
           remote_host: ${{ secrets.DEPLOY_HOST }}
