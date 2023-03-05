@@ -17,10 +17,12 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: build site
         run: yarn build
+      - run: ls -lah
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - run: ls -lah
       - name: rsync
         uses: Burnett01/rsync-deployments@5.2.1
         with:
