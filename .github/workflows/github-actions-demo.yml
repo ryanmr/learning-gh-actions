@@ -18,11 +18,14 @@ jobs:
       - name: build site
         run: yarn build
       - run: ls -lah
+      - name: move dist
+        run: mkdir -p ./upload && mv .dist ./upload/dist
+      - run: ls -lah
       - name: upload dist
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: ./dist/
+          path: ./upload
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
